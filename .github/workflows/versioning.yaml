@@ -1,14 +1,20 @@
 name: BumpVersion
 
-on: [push]
+on:
+    - push
+    - pull_request
 
 jobs:
     bump:
+        if: ${{ github.event_name == 'push' }}
         runs-on: ubuntu-20.04
         steps:
             - name: Checkout branch
               uses: actions/checkout@v3
-            - uses: go-semantic-release/action@v1
+            - uses: go-semantic-release/action@v3
+            - run: | 
+                VERSION=$(git describe --tags $(git rev-list --tags --max-count=1))
+                echo $VERSION
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     bump2:
