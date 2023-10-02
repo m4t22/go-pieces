@@ -1,0 +1,23 @@
+name: BumpVersion
+
+on: [push]
+
+jobs:
+    bump:
+        runs-on: ubuntu-20.04
+        steps:
+            - name: Checkout branch
+              uses: actions/checkout@v3
+            - uses: go-semantic-release/action@v1
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    bump2:
+        runs-on: ubuntu-20.04
+        steps:
+            - name: Checkout branch
+              uses: actions/checkout@v3
+    bump3:
+        runs-on: ubuntu-20.04
+        steps:
+            - name: Checkout branch
+              uses: actions/checkout@v3
