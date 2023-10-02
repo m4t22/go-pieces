@@ -11,6 +11,8 @@ jobs:
         steps:
             - name: Checkout branch
               uses: actions/checkout@v3
+              with:
+                fetch-depth: 0
             - uses: go-semantic-release/action@v1
             - run: | 
                 VERSION=$(git describe --tags $(git rev-list --tags --max-count=1))
