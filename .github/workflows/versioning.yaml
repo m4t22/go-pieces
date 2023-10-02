@@ -17,7 +17,7 @@ jobs:
               with:
                 github-token: ${{ secrets.GITHUB_TOKEN }}
             - run: | 
-                VERSION=$(git describe --tags $(git rev-list --tags --max-count=1))
+                VERSION=$(git describe --tags --abbrev=0)
                 echo ${VERSION//v}
     bump2:
         runs-on: ubuntu-20.04
