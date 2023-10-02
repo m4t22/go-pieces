@@ -14,16 +14,11 @@ jobs:
               with:
                 fetch-depth: 0
             - uses: go-semantic-release/action@v1
-              if: ${{ github.event_name == 'push' }}
-            - uses: go-semantic-release/action@v1
-              if: ${{ github.event_name == 'pull_request' }}
               with:
-                prerelease: true
+                github-token: ${{ secrets.GITHUB_TOKEN }}
             - run: | 
                 VERSION=$(git describe --tags $(git rev-list --tags --max-count=1))
                 echo ${VERSION//v}
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     bump2:
         runs-on: ubuntu-20.04
         steps:
